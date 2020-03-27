@@ -3,6 +3,7 @@ const _ = require('lodash');
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
 const bcrypt = require('bcryptjs');
+
 // JWT Secret
 const jwtSecret = '96655145328100144713abcdqwerty4666879927';
 
@@ -83,6 +84,10 @@ UserSchema.methods.createSession = function() {
 }
 
 /* MODEL METHODS (static methods) */
+UserSchema.statics.getJWTSecret = () => {
+    return jwtSecret;
+}
+
 UserSchema.statics.findByIdAndToken = function(_id, token) {
     // Finds user by id and token
     // used in auth middleware (verifySession)
